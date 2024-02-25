@@ -6,6 +6,7 @@ form {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 label {
 display: block; 
 margin-bottom: 5px; 

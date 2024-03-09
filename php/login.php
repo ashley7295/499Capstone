@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get username and password from the form
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $hash = password_hash($password, PASSWORD_BCRYPT);
 
     // Prepare a SQL query to check if the username and password match
     $sql = "SELECT * FROM Users WHERE Username = '$username' AND Password = '$hash'";

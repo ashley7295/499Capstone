@@ -1,26 +1,28 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="Pretty.css">
+<title>Login </title>
+<link rel="stylesheet" href="Pretty.css">
 </head>
+
 <body>
+  <div>
+    <form method = "post" action = "/php/login.php">
+      <img src="empty rec.jpg" alt="Find Logo">  
+      <h2>Welcome!</h2>
+      <br><label for="uName">Username</label></br>
+      <input type="text" id="username" placeholder="username" name = "username" required>
 
-<h2>LOGIN PAGE</h2>
+      <br><label for="passWord">Password</label></br>
+      <input type="text" id = "password" placeholder="password" name = "password" required>
+      <script src="" ></script>
 
-<form method="POST" action="/php/login.php">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" required><br><br>
+      <br>
+      <span class="psw"> <a href="#">Forgot password</a></span>
+      <input type="submit" value="Login">
+      </form>
+      <br>
 
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required><br><br>
-
-    <input type="submit" value="Login"><br><br>
-
-    <span class="psw"><a href="passwordReset.html">Forgot password?</a></span><br>
-
-    <span class="signup"><a href="signup.html">Don't have an account? Find out how to get one here.</a></span>
-</form>
-
+    </form> 
+  </div>
 </body>
 </html>

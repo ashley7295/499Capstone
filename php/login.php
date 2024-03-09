@@ -42,3 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 exit;
 ?>
+
+
+<h2>database has connected<h2> 

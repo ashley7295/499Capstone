@@ -22,25 +22,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $oldPassword = $_POST['oldPassword'];
     $newPassword = $_POST['newPassword'];
-    $hash = password_hash($oldPassword, PASSWORD_BCRYPT);
+    $oldPasswordHash = password_hash($oldPassword, PASSWORD_BCRYPT);
 
     // Prepare a SQL query to check if the username and passwordHash match
-    $sql = "SELECT * FROM Users WHERE Username = '$username' AND Hashpassword = '$hash'";
+    $sql = "SELECT * FROM Users WHERE Username = '$username' AND Password = '$oldPasswordHash'";
     $result = $conn->query($sql);
 
     // Check if any row is returned
     if ($result->num_rows > 0) {
-        // The username and password are correct, now we update the password has that matched with the username
-        $result -> free_result();
-        $hash = password_hash($newPassword, PASSWORD_BCRYPT);
-        $sql = "UPDATE Users SET Hashpassword = '$hash' WHERE Username = $username;";
+        // If we have a username and password that match, we update the password 
+        // $result -> free_result();
+        $newPasswordHash = password_hash($newPassword, PASSWORD_BCRYPT);
+        $sql = "UPDATE Users SET Password = '$newPasswordHash' WHERE Username = $username;";
         $conn->query($sql);
         echo "Password Changed Succesful!";
 		header('Location: /499CAPSTONE/html/login.html');
 		exit;
     } else {
         // Login failed
-        echo "Password Change failed. Check username";
+        echo "Password Change failed. Check username or Oldpassword";
+        header('Location: /499CAPSTONE/html/passwordReset.html');
     }
 }
 

@@ -1,29 +1,66 @@
 
-/* Center the form element */
+/* general css for entire form */
 form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    width: 30%;
+    height: 70%;
+    background-color: #ffffff;  
 
-label {
-display: block; 
-margin-bottom: 5px; 
-}
+    /* css for border */
+    border: 2px solid #000000;
+    padding: 10px;
+    text-align: center;
+    border-radius: 15px;
 
-input[type="text"],input[type="password"] {
-    width: 100%; 
-    padding: 5px; 
-    margin-bottom: 10px; 
+    /* font for form is Lucida console */
+    font-family: "Lucida Console", "Courier New", monospace;
 }
+    
+/* Label of input boxes */
+  label {
+  display: block; 
+  margin-bottom: 0px;
+  position: relative;
+  text-align: left;
+  left: 25%;
+  }
 
+
+/* all input type that are text or passowrd */
+  input[type="text"],input[type="password"] {
+      width: 50%; 
+      padding: 5px; 
+      margin-bottom: 10px; 
+     
+  }
+
+
+/* all input type that are submit  */
 input[type="submit"] {
-margin: 10px 0 0 0;
-padding: 5px 10px;
-background-color: #4CAF50;
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
+  margin: 10px 0 0 0;
+  padding: 5px 10px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
+
+
+/* background color */
+body {
+  background-color: rgb(255, 255, 255);
+}
+
+
+
+/* Logo */
+img {
+  width: 50%;
+  height: auto;
+} 
+  

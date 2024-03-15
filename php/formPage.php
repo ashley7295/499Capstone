@@ -9,7 +9,7 @@
   <body>
     <fieldset>
       <legend>Form</legend>
-      <form name="frmContact" method="post" action="formPage.php">
+      <form name="frmContact" method="post" >
         <p>
           Some information pulled from database to get question from form id
         </p>

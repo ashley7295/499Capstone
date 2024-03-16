@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upcoming Forms</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+      }
+      .top-bar {
+          background-color: #333;
+          color: #fff;
+          padding: 10px;
+          text-align: center;
+      }
+      .button {
+          display: inline-block;
+          padding: 10px 20px;
+          background-color: #4CAF50;
+          color: #fff;
+          text-decoration: none;
+          margin: 0 10px;
+          border-radius: 5px;
+          transition: background-color 0.3s;
+      }
+      .button:hover {
+          background-color: #45a049;
+      }
+      .container {
+          padding: 20px;
+      }
+  </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        Election selection section
+        <a href="upcomingForms.html" class="button">Upcoming</a>
+        <a href="currentforms.html" class="button">Current</a>
+        <a href="previousForms.html" class="button">Past Results</a>
+        <a href="/php/logout.php" class="button">Logout</a>
+      </div>
+      
+
+<?php
+// PHP section for connecting to database and displaying list of forms
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "forms_database";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  echo "<p class='no-connection'>No connection</p>";
+} else {
+  // SQL query to retrieve forms from the database
+  $sql = "SELECT * FROM forms";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    // Output data of each row
+    echo "<ul>";
+    while($row = $result->fetch_assoc()) {
+      echo "<li>" . $row["form_name"] . "</li>";
+    }
+    echo "</ul>";
+  } else {
+    echo "0 results";
+  }
+}
+
+$conn->close();
+?>
+
+</body>
+</html>

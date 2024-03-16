@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         // The username and password are correct, so set the session variable and redirect to the home page
 		$_SESSION['username'] = $username;
-		header('Location: /499CAPSTONE/html/availableForms.html');
+		header('Location: /499CAPSTONE/html/dashboard.html');
 		exit;
     } else {
         // Login failed

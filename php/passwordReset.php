@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $oldPasswordHash = password_hash($oldPassword, PASSWORD_BCRYPT);
 
     // Prepare a SQL query to check if the username and passwordHash match
-    $sql = "SELECT * FROM Users WHERE Username = '$username' AND Password = '$oldPasswordHash'";
+    $sql = "SELECT * FROM Users WHERE Username = '$username' AND Password = '$oldPassword'";
     $result = $conn->query($sql);
 
     // Check if any row is returned
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // If we have a username and password that match, we update the password 
         // $result -> free_result();
         $newPasswordHash = password_hash($newPassword, PASSWORD_BCRYPT);
-        $sql = "UPDATE Users SET Password = '$newPasswordHash' WHERE Username = $username;";
+        $sql = "UPDATE Users SET Password = '$newPassword' WHERE Username = $username;";
         $conn->query($sql);
         echo "Password Changed Succesful!";
 		header('Location: /499CAPSTONE/html/login.html');

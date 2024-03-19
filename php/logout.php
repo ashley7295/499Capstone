@@ -9,6 +9,8 @@ $_SESSION = array();
 session_destroy();
 
 // Redirect to login page
-header("Location: login.html");
+
+header("Location: /499CAPSTONE/html/login.html");
+
 exit;
 ?>

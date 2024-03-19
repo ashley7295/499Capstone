@@ -49,38 +49,49 @@
       </div>
       
 
-<?php
-// PHP section for connecting to database and displaying list of forms
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "forms_database";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-  echo "<p class='no-connection'>No connection</p>";
-} else {
-  // SQL query to retrieve forms from the database
-  $sql = "SELECT * FROM forms";
-  $result = $conn->query($sql);
-
-  if ($result->num_rows > 0) {
-    // Output data of each row
-    echo "<ul>";
-    while($row = $result->fetch_assoc()) {
-      echo "<li>" . $row["form_name"] . "</li>";
-    }
-    echo "</ul>";
-  } else {
-    echo "0 results";
-  }
-}
-
-$conn->close();
-?>
-
+      <?php
+      // Database connection settings
+      $servername = "localhost";
+      $username = "username";
+      $password = "password";
+      $database = "your_database";
+      
+      // Create connection
+      $conn = new mysqli($servername, $username, $password, $database);
+      
+      // Check connection
+      if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+      }
+      
+      // Get today's date
+      $today_date = date("Y-m-d");
+      
+      // Query to retrieve available forms for today's date or before
+      $sql = "SELECT * FROM html_forms WHERE available_date <= '$today_date'";
+      $result = $conn->query($sql);
+      
+      if ($result->num_rows > 0) {
+          echo "<table border='1'>
+          <tr>
+          <th>Form Name</th>
+          <th>Available Date</th>
+          </tr>";
+      
+          // Output data of each row
+          while($row = $result->fetch_assoc()) {
+              echo "<tr>";
+              echo "<td>" . $row["form_name"] . "</td>";
+              echo "<td>" . $row["available_date"] . "</td>";
+              echo "</tr>";
+          }
+          echo "</table>";
+      } else {
+          echo "No available forms for today's date or before.";
+      }
+      
+      // Close connection
+      $conn->close();
+      ?>
 </body>
 </html>

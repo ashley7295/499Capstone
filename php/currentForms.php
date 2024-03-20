@@ -4,51 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .top-bar {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #45a049;
-        }
-        .container {
-            padding: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="/499Capstone/html/Pretty.css">
+       
 </head>
 <body>
 
     <div class="top-bar">
-        Election selection section
+        <div class = "words"><h1>Loach Votes</h1></div> 
+        <div class = "logo"> <a href = "/499Capstone/html/dashboard.html"><img src="/499Capstone/JPG/empty_rec.jpg" alt="Find Logo"></a> </div>  
         <a href="/499Capstone/html/upcomingForms.html" class="button">Upcoming</a>
-        <a href="/499Capstone/html/currentforms.html" class="button">Current</a>
+        <a href="/499Capstone/php/currentForms.php" class="button">Current</a>
         <a href="/499Capstone/html/previousForms.html" class="button">Past Results</a>
-        <a href="/499Capstone/php/logout.php" class="button">Logout</a>
-      </div>
-
-
-<div class="container">
-    <!-- current available forms will display here -->
-    
-    <p>This is your dashboard content. You can add charts, tables, or any other relevant information here.</p>
+        <div class="dropdown">
+            <button class="dropbtn">My Account</button>
+            <div class="dropdown-content">
+              <a href="/499Capstone/php/logout.php">Logout</a>
+            
+            </div>
+        </div>
+        </div>
+        </body>
+</html>
 
     <form action="currentForms.php" method="get">
         <label for="form_id">Select Form ID:</label>
@@ -87,5 +63,3 @@
         </ul>
         <input type="submit" value="Submit">
     </form>
-
-</div>

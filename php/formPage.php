@@ -4,6 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Form page</title>
+    
   </head>
 
   <body>
@@ -25,7 +26,7 @@
          -->
 
          <?php
-         //<a href="form.php?id=1">Open Form</a> Use this if you want a link to display the form 
+         //<a href="form.php?id=1">Open Form</a> //Use this if you want a link to display the form 
          //The link will also give us a form id which we need to hard code I believe
           //$id = $_GET['id'];
           $id = 1;
@@ -51,42 +52,38 @@
           $result = $stmt->get_result();
 
           // Check if any row is returned
-        if ($result->num_rows > 0) {
-          // Output data of each row
-          while($row = $result->fetch_assoc()) {
-            echo "<p>" . $row["QuestionText"] . "</p>";
-          }
-        } else {
-            echo "No item found with ID: " . $id;
-          }
-
-        $stmt->close();
-        
-        //Displays answers
-        $sql2 = "SELECT  AnswerOption, AnswerID FROM answers WHERE FormID = ?";
-        $stmt2 = $conn->prepare($sql2);
-        $stmt2->bind_param("i", $id);
-        $stmt2->execute();
-        $result2 = $stmt2->get_result();
-
-          // Check if any row is returned
-          if ($result2->num_rows > 0) {
-            // Output radio buttons for each answer option
-            echo "<form>";
-            while ($row2 = $result2->fetch_assoc()) {
-                echo '<input type="radio" name="answer" value="' . $row2["AnswerID"] . '">' . $row2["AnswerOption"] . '<br>';
+          if ($result->num_rows > 0) {
+            // Output data of each row
+            while ($row = $result->fetch_assoc()) {
+              echo "<p>" . $row["QuestionText"] . "</p>";
+    
+              // Prepare and execute SQL query to fetch answer options based on the QuestionID
+              $sql2 = "SELECT AnswerOption, AnswerID FROM answers WHERE QuestionID = ?";
+              $stmt2 = $conn->prepare($sql2);
+              $stmt2->bind_param("i", $row["QuestionID"]);
+              $stmt2->execute();
+              $result2 = $stmt2->get_result();
+    
+              // Check if any rows are returned
+              if ($result2->num_rows > 0) {
+                // Output radio buttons for each answer option
+                echo "<form>";
+                while ($row2 = $result2->fetch_assoc()) {
+                  echo '<input type="radio" name="answer" value="' . $row2["AnswerID"] . '">' . $row2["AnswerOption"] . '<br>';
+                }
+                echo "</form>";
+              } else {
+                echo "No answers found for QuestionID: " . $row["QuestionID"];
+              }
+    
+              $stmt2->close();
             }
-            echo "</form>";
-        } else {
-            echo "No answers found for FormID: " . $id;
-        }
-          
-         
-
-          // Close the database connection
-          $stmt2->close();
+          } else {
+            echo "No items found with FormID: " . $id;
+          }
+    
+          $stmt->close();
           $conn->close();
-          exit;
           ?>
 
         <p>

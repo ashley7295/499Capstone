@@ -10,7 +10,7 @@ session_destroy();
 
 // Redirect to login page
 
-header("Location: /499CAPSTONE/html/login.html");
+header("Location: /499Capstone/html/login.html");
 
 exit;
 ?>

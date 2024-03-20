@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Login failed
         echo "Login failed. Please check your username and password.";
+        echo "<a href="#">My Info</a>
     }
 }
 

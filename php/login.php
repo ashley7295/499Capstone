@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare a SQL query to check if the username and password match
     // WE NEED TO MAKE ALL PASSWORDS USE HASH SINCE WE DONT HAVE ANY SIGNUP PAGE. 
-    $sql = "SELECT * FROM Users WHERE Username = '$username' AND Password = '$hash'";
+    $sql = "SELECT * FROM Users WHERE Username = '$username' AND Password = '$password'";
     $result = $conn->query($sql);
 
     // Check if any row is returned

@@ -1,99 +1,89 @@
-<!DOCTYPE html>
-<html>
+<?php
+// Retrieve the form ID from the URL parameter
+if (isset($_GET['form_id'])) {
+    $id = $_GET['form_id'];
+} 
 
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Form page</title>
-  </head>
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "Voting";
 
-  <body>
-    <fieldset>
-      <legend>Form</legend>
-      <form name="frmContact" method="post" >
-        <p>
-          Some information pulled from database to get question from form id
-        </p>
-  
-        <!-- Add some code in here that will populate shit from sql query into             the>se variables and give questions and answers. (Thinking of using .php 
-        file and incorporating html into the file so its more fluid I believe) -->
-        <!-- <input type="radio" id="radio1" name="fav_language" value="HTML">
-        <label for="radio1">HTML</label><br>
-        <input type="radio" id="radio2" name="fav_language" value="CSS">
-        <label for="radio2">CSS</label><br>
-        <input type="radio" id="radio3" name="fav_language" value="JavaScript">
-        <label for="radio3">JavaScript</label>
-         -->
+$conn = new mysqli($servername, $username, $password, $database);
 
-         <?php
-         //<a href="form.php?id=1">Open Form</a> Use this if you want a link to display the form 
-         //The link will also give us a form id which we need to hard code I believe
-          //$id = $_GET['id'];
-          $id = 1;
-          // Database connection parameters
-          $servername = "localhost"; // Change if your MySQL server is on a different host
-          $username = "root"; // Change to your MySQL username
-          $password = ""; // Change to your MySQL password
-          $database = "Voting";
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-          // Create connection
-          $conn = new mysqli($servername, $username, $password, $database);
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if the answer is selected
+    if(isset($_POST['answer'])) {
+        // Get the selected answer ID
+        $selected_answer_id = $_POST['answer'];
 
-          // Check connection
-          if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-          }
-          
-          // Prepare and execute SQL query to fetch data based on the ID
-          $sql = "SELECT QuestionID, QuestionText FROM questions WHERE FormID = ?";
-          $stmt = $conn->prepare($sql);
-          $stmt->bind_param("i", $id);
-          $stmt->execute();
-          $result = $stmt->get_result();
-
-          // Check if any row is returned
-        if ($result->num_rows > 0) {
-          // Output data of each row
-          while($row = $result->fetch_assoc()) {
-            echo "<p>" . $row["QuestionText"] . "</p>";
-          }
-        } else {
-            echo "No item found with ID: " . $id;
-          }
-
-        $stmt->close();
+        // Prepare and execute the update query
+        $update_sql = "UPDATE user_answers SET AnswerID = ? WHERE FormID = ?";
+        $update_stmt = $conn->prepare($update_sql);
+        $update_stmt->bind_param("ii", $selected_answer_id, $id);
         
-        //Displays answers
-        $sql2 = "SELECT  AnswerOption, AnswerID FROM answers WHERE FormID = ?";
-        $stmt2 = $conn->prepare($sql2);
-        $stmt2->bind_param("i", $id);
-        $stmt2->execute();
-        $result2 = $stmt2->get_result();
-
-          // Check if any row is returned
-          if ($result2->num_rows > 0) {
-            // Output radio buttons for each answer option
-            echo "<form>";
-            while ($row2 = $result2->fetch_assoc()) {
-                echo '<input type="radio" name="answer" value="' . $row2["AnswerID"] . '">' . $row2["AnswerOption"] . '<br>';
-            }
-            echo "</form>";
+        if ($update_stmt->execute()) {
+            echo '<script>alert("Answer updated successfully.");</script>';
+            echo '<script>window.location.href = "dashboard.html";</script>';
         } else {
-            echo "No answers found for FormID: " . $id;
+            echo "Error updating answer: " . $conn->error;
         }
-          
-         
 
-          // Close the database connection
-          $stmt2->close();
-          $conn->close();
-          exit;
-          ?>
+        $update_stmt->close();
+    } else {
+        echo '<script>alert("Please select an answer.");</script>';
+    }
+}
 
-        <p>
-          <input type="submit" name="Submit" id="Submit" value="Submit">
-        </p>
-      </form>
-    </fieldset>
-  </body>
+$sql = "SELECT QuestionID, QuestionText FROM questions WHERE FormID = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$result = $stmt->get_result();
 
-</html>
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<p>" . $row["QuestionText"] . "</p>";
+    }
+} else {
+    echo "No questions found for FormID: " . $id;
+}
+
+$stmt->close();
+
+$sql2 = "SELECT  AnswerOption, AnswerID FROM answers WHERE FormID = ?";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->bind_param("i", $id);
+$stmt2->execute();
+$result2 = $stmt2->get_result();
+
+if ($result2->num_rows > 0) {
+    echo "<form id='answerForm' method='post' onsubmit='return confirmSubmission();'>"; // Added the form opening tag here with method='post' and onsubmit attribute
+    while ($row2 = $result2->fetch_assoc()) {
+        echo '<input type="radio" name="answer" value="' . $row2["AnswerID"] . '">' . $row2["AnswerOption"] . '<br>';
+    }
+    echo '<input type="submit" value="Submit Answer">'; // Added a submit button
+    echo "</form>";
+} else {
+    echo "No answers found for FormID: " . $id;
+}
+
+$stmt2->close();
+$conn->close();
+?>
+
+<script>
+function confirmSubmission() {
+    var answer = document.querySelector('input[name="answer"]:checked');
+    if (!answer) {
+        alert("Please select an answer.");
+        return false;
+    }
+    return confirm("Are you sure you want your answer to be: " + answer.nextElementSibling.textContent.trim() + "?");
+}
+</script>

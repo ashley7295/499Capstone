@@ -1,66 +1,206 @@
 
 /* general css for entire form */
 form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: auto;
-    width: 30%;
-    height: 70%;
-    background-color: #ffffff;  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+  width: 30%;
+  height: 70%;
+  background-color: #ffffff;  
 
-    /* css for border */
-    border: 2px solid #000000;
-    padding: 10px;
-    text-align: center;
-    border-radius: 15px;
+  /* css for border */
+  border: 2px solid #000000;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
 
-    /* font for form is Lucida console */
-    font-family: "Lucida Console", "Courier New", monospace;
+  /* font for form is Lucida console */
+  font-family: "Lucida Console", "Courier New", monospace;
 }
-    
+  
 /* Label of input boxes */
-  label {
-  display: block; 
-  margin-bottom: 0px;
-  position: relative;
-  text-align: left;
-  left: 25%;
-  }
+label {
+display: block; 
+margin-bottom: 0px;
+position: relative;
+text-align: left;
+left: 25%;
+}
 
 
 /* all input type that are text or passowrd */
-  input[type="text"],input[type="password"] {
-      width: 50%; 
-      padding: 5px; 
-      margin-bottom: 10px; 
-     
-  }
+input[type="text"],input[type="password"] {
+    width: 50%; 
+    padding: 5px; 
+    margin-bottom: 10px; 
+   
+}
 
 
 /* all input type that are submit  */
 input[type="submit"] {
-  margin: 10px 0 0 0;
-  padding: 5px 10px;
-  background-color: #000000;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+margin: 10px 0 0 0;
+padding: 5px 10px;
+background-color: #000000;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
 }
 
 
 /* background color */
 body {
-  background-color: rgb(255, 255, 255);
+background-color: rgb(255, 255, 255);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* navigation bar  */
+.top-bar {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button2 {
+border-radius: 50%;
+background-color: #141915;
+
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+.container {
+  padding: 20px;
+}
+
+
+/* Logo for login and reset password*/
+.login img {
+width: 50%;
+height: auto;
+} 
+
+/* Logo for menu bar*/
+.logo img {
+width: 10%;
+height: 7%;
+position: absolute; 
+top: 90px;
+left: 30px;
+} 
+
+/* currently not using. this will make a circle 
+.dot img{
+background: lightblue;
+border-radius: 50%;
+height: 7%;
+position: absolute; 
+top: 8px;
+right: 16px;
+}
+
+*/
+
+
+/* center text (p) */
+.words{
+text-align: center;
+font-family: "Lucida Console", "Courier New", monospace;
 }
 
 
 
-/* Logo */
-img {
-  width: 50%;
-  height: auto;
-} 
-  
+/*drop down button*/
+
+.dropbtn {
+
+background-color: #45a049;
+color: white;
+padding: 16px;
+font-size: 16px;
+border: none;
+border-radius: 50%;
+}
+
+.dropdown {
+position: relative;
+display: inline-block;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f1f1f1;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+/* resize images in dashboard */
+.dash img {
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;
+height: auto;
+}
+
+
+/* clickable and hoverable dashboard */
+
+.dashboard {
+width:29%; 
+float:left; 
+height:300px; 
+background:gray; 
+margin:10px;
+display: inline-block;
+padding: 10px 20px;
+color: #fff;
+border-radius: 5px;
+transition: background-color 0.3s;
+}
+
+.dashboard:hover {
+background-color: #45a049;
+}
+
+
+/* side panel for forms */ 
+.sidePanel {
+width:20%; 
+float:left; 
+height:500px; 
+background:gray; 
+color: #fff;
+}

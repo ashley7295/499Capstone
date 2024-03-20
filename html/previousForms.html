@@ -1,97 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Previous Forms</title>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <style>
-      body {
-          font-family: Arial, sans-serif;
-          margin: 0;
-          padding: 0;
-      }
-      .top-bar {
-          background-color: #333;
-          color: #fff;
-          padding: 10px;
-          text-align: center;
-      }
-      .button {
-          display: inline-block;
-          padding: 10px 20px;
-          background-color: #4CAF50;
-          color: #fff;
-          text-decoration: none;
-          margin: 0 10px;
-          border-radius: 5px;
-          transition: background-color 0.3s;
-      }
-      .button:hover {
-          background-color: #45a049;
-      }
-      .container {
-          padding: 20px;
-      }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="Pretty.css">
+       
 </head>
 <body>
 
-    <div class="top-bar">
-        Election selection section
-        <a href="upcomingForms.html" class="button">Upcoming</a>
-        <a href="currentforms.html" class="button">Current</a>
-        <a href="previousForms.html" class="button">Past Results</a>
-        <a href="youraccount.html" class="button">logout</a>
-      </div>
-      
+<div class="top-bar">
+    <div class = "words"><h1>Loach Votes</h1>
+    <div class = "logo"> <a href = " /499/html/dashboard.html"><img src="empty rec.jpg" alt="Find Logo"></a> </div>  
+    <a href=" /499/html/upcomingForms.html" class="button">Upcoming</a>
+    <a href="#" class="button">Current</a>
+    <a href=" /499/html/previousForms.html" class="button">Past Results</a>
+    <div class="dropdown">
+        <button class="dropbtn">My Account</button>
+        <div class="dropdown-content">
+          <a href="#">My Info</a>
+          <a href="#">Logout</a>
+        
+        </div>
+    </div>
+    </div>
+    </div>
 
-      <?php
-      // Database connection settings
-      $servername = "localhost";
-      $username = "username";
-      $password = "password";
-      $database = "your_database";
-      
-      // Create connection
-      $conn = new mysqli($servername, $username, $password, $database);
-      
-      // Check connection
-      if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-      }
-      
-      // Get today's date
-      $today_date = date("Y-m-d");
-      
-      // Query to retrieve available forms for today's date or before
-      $sql = "SELECT * FROM html_forms WHERE available_date <= '$today_date'";
-      $result = $conn->query($sql);
-      
-      if ($result->num_rows > 0) {
-          echo "<table border='1'>
-          <tr>
-          <th>Form Name</th>
-          <th>Available Date</th>
-          </tr>";
-      
-          // Output data of each row
-          while($row = $result->fetch_assoc()) {
-              echo "<tr>";
-              echo "<td>" . $row["form_name"] . "</td>";
-              echo "<td>" . $row["available_date"] . "</td>";
-              echo "</tr>";
-          }
-          echo "</table>";
-      } else {
-          echo "No available forms for today's date or before.";
-      }
-      
-      // Close connection
-      $conn->close();
-      ?>
-</body>
-</html>
+   
+
+    <div class = "sidePanel">
+        
+        <br><div class = "words">Upcoming forms</br>
+          <br><a href="#">Home</a><br>
+          <br><a href="#">My Info</a><br>
+          <br><a href="#">My Info</a><br>
+          <br><a href="#">My Info</a><br>
+            </div>
+     </div>
+    </body>
+    </html>    

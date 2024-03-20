@@ -44,11 +44,48 @@
         <a href="/499Capstone/php/logout.php" class="button">Logout</a>
       </div>
 
+
 <div class="container">
     <!-- current available forms will display here -->
     
     <p>This is your dashboard content. You can add charts, tables, or any other relevant information here.</p>
-</div>
 
-</body>
-</html>
+    <form action="currentForms.php" method="get">
+        <label for="form_id">Select Form ID:</label>
+        <ul>
+            <?php
+            // Database connection parameters
+            $servername = "localhost"; // Change if your MySQL server is on a different host
+            $username = "root"; // Change to your MySQL username
+            $password = ""; // Change to your MySQL password
+            $database = "Voting";
+    
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $database);
+    
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+    
+            // Fetch form IDs from the database
+            $sql = "SELECT FormID FROM forms";
+            $result = $conn->query($sql);
+    
+            if ($result->num_rows > 0) {
+                // Output list items for each form ID
+                while ($row = $result->fetch_assoc()) {
+                    echo '<li><input type="radio" name="form_id" value="' . $row["FormID"] . '"> Form ' . $row["FormID"] . '</li>';
+                }
+            } else {
+                echo '<li>No forms available</li>';
+            }
+    
+            // Close the database connection
+            $conn->close();
+            ?>
+        </ul>
+        <input type="submit" value="Submit">
+    </form>
+
+</div>

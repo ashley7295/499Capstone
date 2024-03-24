@@ -26,8 +26,8 @@
         </body>
 </html>
 
-    <form action="currentForms.php" method="get">
-        <label for="form_id">Select Form ID:</label>
+    <form action="formPage.php" method="get">
+        <label for="form_id">Select Form:</label>
         <ul>
             <?php
             // Database connection parameters
@@ -51,7 +51,7 @@
             if ($result->num_rows > 0) {
                 // Output list items for each form ID
                 while ($row = $result->fetch_assoc()) {
-                    echo '<li><input type="radio" name="form_id" value="' . $row["FormID"] . '"> Form ' . $row["FormID"] . '</li>';
+                    echo '<input type="radio" name="form_id" value="' . $row["FormID"] . '"> Form ' . $row["FormID"] . '<br>';
                 }
             } else {
                 echo '<li>No forms available</li>';

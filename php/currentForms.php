@@ -30,6 +30,9 @@
         <label for="form_id">Select Form:</label>
         <ul>
             <?php
+
+            session_start(); // Start the session
+            
             // Database connection parameters
             $servername = "localhost"; // Change if your MySQL server is on a different host
             $username = "root"; // Change to your MySQL username

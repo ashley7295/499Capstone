@@ -23,6 +23,7 @@
 
     <div class="container">
         <?php
+
         if(isset($_GET['form_id'])) {
             $form_id = $_GET['form_id'];
             
@@ -47,43 +48,55 @@
             if ($result->num_rows > 0) {
                 // Output form details
                 $row = $result->fetch_assoc();
-                echo "<h2>{$row['Title']}</h2>";
-                echo "<p>{$row['Description']}</p>";
+            
+                // Initialize an array to store questions and their associated answer options
+                $questions_with_answers = array();
 
                 // Fetch questions with associated answer options for the selected form
                 $sql_questions = "SELECT q.QuestionID, q.QuestionText, a.AnswerID, a.AnswerOption 
-                                  FROM Questions q 
-                                  LEFT JOIN Answers a ON q.QuestionID = a.QuestionID AND a.FormID = $form_id";
+                                FROM Questions q 
+                                LEFT JOIN Answers a ON q.QuestionID = a.QuestionID 
+                                WHERE a.FormID = $form_id";
                 $result_questions = $conn->query($sql_questions);
 
-                if ($result_questions->num_rows > 0) {
-                    echo "<form action='submitAnswers.php' method='post'>";
-                    // Output questions and answer options
-                    while ($row_question = $result_questions->fetch_assoc()) {
-                        echo "<h3>{$row_question['QuestionText']}</h3>";
-                        if ($row_question['AnswerID'] !== null) {
-                            echo "<input type='radio' name='answer[{$row_question['QuestionID']}]' value='{$row_question['AnswerID']}' required>{$row_question['AnswerOption']}<br>";
-                        } else {
-                            echo "<p>No answer options available.</p>";
-                        }
+                // Group questions with their associated answer options
+                while ($row_question = $result_questions->fetch_assoc()) {
+                    // Check if the question already exists in the array
+                    if (!isset($questions_with_answers[$row_question['QuestionID']])) {
+                        // If not, initialize an array to store answer options for this question
+                        $questions_with_answers[$row_question['QuestionID']] = array(
+                            'QuestionText' => $row_question['QuestionText'],
+                            'AnswerOptions' => array()
+                        );
                     }
-                    echo "<input type='hidden' name='form_id' value='$form_id'>";
-                    echo "<input type='submit' value='Submit Answers'>";
-                    echo "</form>";
-                } else {
-                    echo "<p>No questions found for this form.</p>";
+                    // Add the answer option to the array under the corresponding question
+                    if ($row_question['AnswerID'] !== null) {
+                        $questions_with_answers[$row_question['QuestionID']]['AnswerOptions'][] = array(
+                            'AnswerID' => $row_question['AnswerID'],
+                            'AnswerOption' => $row_question['AnswerOption']
+                        );
+                    }
                 }
-            } else {
-                echo "<p>No form found for the selected ID.</p>";
-            }
 
-            // Close the database connection
-            $conn->close();
-        } else {
-            echo "<p>Please select a form.</p>";
-        }
-        ?>
-    </div>
+                // Output questions and answer options
+                foreach ($questions_with_answers as $question_id => $question_data) {
+                    echo "<h3>{$question_data['QuestionText']}</h3>";
+                    foreach ($question_data['AnswerOptions'] as $answer_option) {
+                        echo "<input type='radio' name='answer[$question_id]' value='{$answer_option['AnswerID']}' required>{$answer_option['AnswerOption']}<br>";
+                    }
+                }
 
-</body>
-</html>
+                // Add form ID as hidden input
+                echo "<input type='hidden' name='form_id' value='$form_id'>";
+
+                // Add submit button
+                echo "<input type='submit' value='Submit Answers'>";
+
+                // Close the form
+                echo "</form>";
+
+
+
+
+            }}
+

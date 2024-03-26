@@ -4,29 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="Pretty.css">
+    <link rel="stylesheet" href="/499Capstone/html/Pretty.css">
        
 </head>
 <body>
 
 <div class="top-bar">
-    <div class = "words"><h1>Loach Votes</h1>
-    <div class = "logo"> <a href = "/html/availableForms.html"><img src="empty rec.jpg" alt="Find Logo"></a> </div>  
-    <a href="/html/upcomingForms.html" class="button">Upcoming</a>
-    <a href="#" class="button">Current</a>
-    <a href="/html/previousForms.html" class="button">Past Results</a>
+    <div class = "words"><h1>Loach Votes</h1></div> 
+    <div class = "logo"> <a href = "/499Capstone/html/dashboard.html"><img src="/499Capstone/JPG/empty rec.jpg" alt="Find Logo"></a> </div>  
+    <a href="/499Capstone/php/upcomingForms.php" class="button">Upcoming</a>
+    <a href="/499Capstone/php/currentForms.php" class="button">Current</a>
+    <a href="/499Capstone/php/previousForms.php" class="button">Past Results</a>
     <div class="dropdown">
         <button class="dropbtn">My Account</button>
         <div class="dropdown-content">
-          <a href="#">My Info</a>
-          <a href="#">Logout</a>
+          <a href="/499Capstone/php/logout.php">Logout</a>
         
         </div>
     </div>
     </div>
+
+
     </div>
 
-    <div class = "sidePanel">
+    <div class = "cssform2">
         
         <br><div class = "words">Upcoming forms</br>
           <br><a href="#">Home</a><br>

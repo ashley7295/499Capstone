@@ -1,6 +1,6 @@
 
 /* general css for entire form */
-form {
+.cssform1 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -20,6 +20,28 @@ form {
   font-family: "Lucida Console", "Courier New", monospace;
 }
   
+
+.cssform2 {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+  width: 30%;
+  height: auto;
+  background-color: #ffffff;  
+
+  /* css for border */
+  border: 2px solid #000000;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
+
+  /* font for form is Lucida console */
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+
 /* Label of input boxes */
 label {
 display: block; 
@@ -173,6 +195,7 @@ margin-left: auto;
 margin-right: auto;
 width: 50%;
 height: auto;
+border-radius: 5px;
 }
 
 
@@ -189,6 +212,8 @@ padding: 10px 20px;
 color: #fff;
 border-radius: 5px;
 transition: background-color 0.3s;
+text-align: center;
+font-family: "Lucida Console", "Courier New", monospace;
 }
 
 .dashboard:hover {

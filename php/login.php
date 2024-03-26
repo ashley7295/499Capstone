@@ -1,9 +1,9 @@
 <?php
 // Database connection parameters
-$servername = "localhost"; // Change if your MySQL server is on a different host
+$servername = "localhost:3308"; // Change if your MySQL server is on a different host
 $username = "root"; // Change to your MySQL username
 $password = ""; // Change to your MySQL password
-$database = "Voting";
+$database = "voting";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare a SQL query to check if the username and password match
     // WE NEED TO MAKE ALL PASSWORDS USE HASH SINCE WE DONT HAVE ANY SIGNUP PAGE. 
-    $sql = "SELECT * FROM Users WHERE Username = '$username' AND Password = '$hash'";
+    $sql = "SELECT * FROM users WHERE Username = '$username' AND Password = '$password'";
     $result = $conn->query($sql);
 
     // Check if any row is returned
@@ -44,6 +44,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 exit;
 ?>
-
-
-<h2>database has connected<h2> 

@@ -13,4 +13,4 @@ session_destroy();
 header("Location: /499CAPSTONE/html/login.html");
 
 exit;
-?>
+

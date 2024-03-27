@@ -94,9 +94,9 @@
 
                 // Close the form
                 echo "</form>";
-
-
-
-
-            }}
+        }}?> 
+        </div>
+        </body>
+        </html>
+    
 

@@ -1,3 +1,11 @@
+<?php
+
+// Start a session
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +41,7 @@
     </div>
 </div>
 
-<a ref="/499Capstone/html/upcomingForms.html"></a>
+<a ref="/499Capstone/php/upcomingForms.php"></a>
 <div class = "dashboard">
     <br><div class = "words">View Upcoming Forms</div></br>
     <div class = "dash"><img src="/499Capstone/JPG/upcoming.jpg" alt="Find Logo"></div>
@@ -54,10 +62,4 @@
 </body>
 </html>
 
-<?php
-
-// Start a session
-session_start();
-
-?>
 

@@ -11,10 +11,10 @@
 
     <div class="top-bar">
         <div class = "words"><h1>Loach Votes</h1></div> 
-        <div class = "logo"> <a href = "/499Capstone/html/dashboard.html"><img src="/499Capstone/JPG/empty_rec.jpg" alt="Find Logo"></a> </div>  
-        <a href="/499Capstone/html/upcomingForms.html" class="button">Upcoming</a>
+        <div class = "logo"> <a href = "/499Capstone/php/dashboard.php"><img src="/499Capstone/JPG/empty_rec.jpg" alt="Find Logo"></a> </div>  
+        <a href="/499Capstone/php/upcomingForms.php" class="button">Upcoming</a>
         <a href="/499Capstone/php/currentForms.php" class="button">Current</a>
-        <a href="/499Capstone/html/previousForms.html" class="button">Past Results</a>
+        <a href="/499Capstone/php/previousForms.php" class="button">Past Results</a>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -30,6 +30,9 @@
         <label for="form_id">Select Form:</label>
         <ul>
             <?php
+
+            session_start(); // Start the session
+            
             // Database connection parameters
             $servername = "localhost"; // Change if your MySQL server is on a different host
             $username = "root"; // Change to your MySQL username

@@ -1,5 +1,7 @@
 <?php
 
+session_start(); // Start the session
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if user is logged in
     if (!isset($_SESSION["UserID"])) {
@@ -42,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     echo "Answers submitted successfully.";
+    header('Location: /499CAPSTONE/html/dashboard.html');
 
     // Close the statement and database connection
     $stmt->close();

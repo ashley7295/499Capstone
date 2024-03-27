@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Runs through results
     foreach($result as $r) {
         // Using php function, we verify the hash that is on the DB
-        $pass_check = password_verify($password, $r['password']);
+        $pass_check = password_verify($password, $r['Password']);
 
         // If the password verify is true we login
         if($pass_check) {

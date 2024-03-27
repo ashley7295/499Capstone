@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $update_stmt->close();
 
 
-		header('Location: /499CAPSTONE/php/currentForms.php');
+		header('Location: /499CAPSTONE/php/dashboard.php');
 		exit;
     } else {
         // Login failed

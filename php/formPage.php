@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="cssform2">
         <?php
 
         if(isset($_GET['form_id'])) {

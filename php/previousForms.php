@@ -22,9 +22,8 @@
         </div>
     </div>
 
-    <div style="text-align: center;">
-    <div style="border-radius: 10px; border: 2px solid #000; padding: 10px; display: inline-block;">
-        <table style="font-size: 18px;">
+    <div class = "cssform2">
+    <table style="font-size: 18px;">
             <thead>
                 <tr>
                     <th>Form ID</th>

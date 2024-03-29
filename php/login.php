@@ -40,7 +40,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		    exit;
         } else {
             // Login failed
-            echo "Login failed. Please check your username and password.";
+            ?>
+            <html>
+                Login failed. Please check your username and password.
+                <br>
+                <a href="login.php">Click Here</a> to return back to Login page
+            </html>
+            <?php
         }
     }
 }

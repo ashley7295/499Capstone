@@ -35,13 +35,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // If the password verify is true we login
         if($pass_check) {
-		    $_SESSION['username'] = $username;
-		    header('Location: /499CAPSTONE/html/dashboard.html');
+		    $row = $result->fetch_assoc();
+        $user_id = $row['UserID'];
+
+        // Set the session variable
+        $_SESSION['UserID'] = $user_id;
+        
+        // Update UserID in the database
+        $update_sql = "UPDATE users SET UserID = ? WHERE Username = ?";
+        $update_stmt = $conn->prepare($update_sql);
+        $update_stmt->bind_param("is", $user_id, $username);
+        $update_stmt->execute();
+        $update_stmt->close();
+          
+          
+		    header('Location: /499CAPSTONE/php/dashboard.php');
 		    exit;
         } else {
             // Login failed
             echo "Login failed. Please check your username and password.";
         }
+
     }
 }
 

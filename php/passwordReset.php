@@ -16,32 +16,38 @@ if ($conn->connect_error) {
 // Start a session
 session_start();
 
+
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get username and passwords from the user
     $username = $_POST['username'];
     $oldPassword = $_POST['oldPassword'];
     $newPassword = $_POST['newPassword'];
-    $oldPasswordHash = password_hash($oldPassword, PASSWORD_BCRYPT);
 
     // Prepare a SQL query to check if the username and passwordHash match
-    $sql = "SELECT * FROM Users WHERE Username = '$username' AND Password = '$oldPassword'";
+    $sql = "SELECT * FROM users WHERE Username = '$username'";
     $result = $conn->query($sql);
 
-    // Check if any row is returned
-    if ($result->num_rows > 0) {
-        // If we have a username and password that match, we update the password 
-        // $result -> free_result();
-        $newPasswordHash = password_hash($newPassword, PASSWORD_BCRYPT);
-        $sql = "UPDATE Users SET Password = '$newPassword' WHERE Username = $username;";
-        $conn->query($sql);
-        echo "Password Changed Succesful!";
-		header('Location: /499CAPSTONE/html/login.html');
-		exit;
-    } else {
-        // Login failed
-        echo "Password Change failed. Check username or Oldpassword";
-        header('Location: /499CAPSTONE/html/passwordReset.html');
+    // Runs through results 
+    foreach($result as $r) {
+        // Using php function, we verify the hash that is on the DB
+        $old_pass_check = password_verify($oldPassword, $r['Password']);
+
+        // If the password verify is true
+        if($old_pass_check) {
+            // Create new hash with new password and store into DB under that username
+            $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+            $sql = "UPDATE users SET Password = '$newPasswordHash' WHERE Username = '$username'";
+            $conn->query($sql);
+            echo "Password Changed Succesful!";
+            header('Location: /499CAPSTONE/html/login.html');
+            exit;
+        } else {
+            // Login failed
+            echo "Password Change failed. Check username or password";
+            header('Location: /499CAPSTONE/html/passwordReset.html');
+        }
     }
 }
 

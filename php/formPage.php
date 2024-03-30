@@ -95,8 +95,9 @@ if(isset($_GET['form_id'])) {
             }
         }
 
-        // Add form ID as hidden input
-        echo "<input type='hidden' name='form_id' value='$form_id'>";
+
+    <div class="cssform2">
+        <?php
 
         // Add submit button
         echo "<input type='submit' value='Submit Answers'>";

@@ -41,23 +41,34 @@ session_start();
     </div>
 </div>
 
-<a ref="/499Capstone/php/upcomingForms.php"></a>
-<div class = "dashboard">
-    <br><div class = "words">View Upcoming Forms</div></br>
-    <div class = "dash"><img src="/499Capstone/JPG/upcoming.jpg" alt="Find Logo"></div>
-</div>
-</a>
+
+    <a href= "/499Capstone/php/upcomingForms.php">
+        <div class="dashboard"> View Upcoming Forms<div class = "dash">
+            <img src="/499Capstone/JPG/upcoming.jpg" alt="Find Logo">
+        </div>
+        </div>
+    </a>
 
 
-<div class = "dashboard">
-    <br><div class = "words">Current Forms</div></br>
-    <div class = "dash"><img src="/499Capstone/JPG/currentForms.jpg" alt="Find Logo"></div>
- </div>
 
- <div class = "dashboard">
-    <br><div class = "words">Past Results</div></br>
-    <div class = "dash"><img src="/499Capstone/JPG/previousforms.jpg" alt="Find Logo"></div>
- </div>
+
+
+
+    <a href= "/499Capstone/php/currentForms.php">
+        <div class="dashboard"> View Current Forms<div class = "dash">
+            <img src="/499Capstone/JPG/currentForms.jpg" alt="Find Logo">
+        </div>
+        </div>
+    </a>
+
+
+
+    <a href= "/499Capstone/php/previousForms.php">
+        <div class="dashboard"> View Previous Forms<div class = "dash">
+            <img src="/499Capstone/JPG/previousForms.jpg" alt="Find Logo">
+        </div>
+        </div>
+    </a>
 
 </body>
 </html>

@@ -26,7 +26,7 @@
         </body>
 </html>
 
-    <form action="formPage.php" method="get">
+    <form class = "cssform2" action="formPage.php" method="get">
         <label for="form_id">Select Form:</label>
         <ul>
             <?php

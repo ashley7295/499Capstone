@@ -1,8 +1,8 @@
 <?php
 // Database connection parameters
-$servername = "localhost"; // Change if your MySQL server is on a different host
-$username = "root"; // Change to your MySQL username
-$password = ""; // Change to your MySQL password
+$servername = "localhost";
+$username = "root";
+$password = "";
 $database = "Voting";
 
 // Create connection
@@ -21,51 +21,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get username and password from the form
     $username = $_POST['username'];
     $password = $_POST['password'];
-    
 
-    // Prepare a SQL query to check if the username and password match
-    // WE NEED TO MAKE ALL PASSWORDS USE HASH SINCE WE DONT HAVE ANY SIGNUP PAGE. 
-    $sql = "SELECT * FROM users WHERE Username = '$username'";
-    $result = $conn->query($sql);
+    // Prepare a SQL query to check if the username exists
+    $stmt = $conn->prepare("SELECT UserID, Password FROM users WHERE Username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
 
-    // Runs through results
-    foreach($result as $r) {
-        // Using php function, we verify the hash that is on the DB
-        $pass_check = password_verify($password, $r['Password']);
-
-        // If the password verify is true we login
-        if($pass_check) {
-		    $row = $result->fetch_assoc();
-        $user_id = $row['UserID'];
-
-        // Set the session variable
-        $_SESSION['UserID'] = $user_id;
+    // Check if username exists
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($user_id, $hashed_password);
+        $stmt->fetch();
         
-        // Update UserID in the database
-        $update_sql = "UPDATE users SET UserID = ? WHERE Username = ?";
-        $update_stmt = $conn->prepare($update_sql);
-        $update_stmt->bind_param("is", $user_id, $username);
-        $update_stmt->execute();
-        $update_stmt->close();
-          
-          
-		    header('Location: /499CAPSTONE/php/dashboard.php');
-		    exit;
+        // Verify the password
+        if (password_verify($password, $hashed_password)) {
+            // Set the session variable
+            $_SESSION['UserID'] = $user_id;
+
+            // Update UserID in the database
+            $update_sql = "UPDATE users SET UserID = ? WHERE Username = ?";
+            $update_stmt = $conn->prepare($update_sql);
+            $update_stmt->bind_param("is", $user_id, $username);
+            $update_stmt->execute();
+            $update_stmt->close();
+
+            // Redirect to dashboard
+            header('Location: /499CAPSTONE/php/dashboard.php');
+            exit;
         } else {
             // Login failed
-            ?>
-            <html>
-                Login failed. Please check your username and password.
-                <br>
-                <a href="login.html">Click Here</a> to return back to Login page
-            </html>
-            <?php
+            echo "Login failed. Please check your username and password.";
         }
-
+    } else {
+        // Username not found
+        echo "Login failed. User not found.";
     }
+
+    $stmt->close();
 }
 
 // Close the database connection
 $conn->close();
-exit;
 ?>

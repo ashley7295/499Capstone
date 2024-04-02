@@ -48,7 +48,7 @@
             }
     
             // Fetch form IDs from the database
-            $sql = "SELECT FormID FROM forms";
+            $sql = "SELECT FormID, dateAvailable FROM Forms WHERE DATE(dateAvailable) = CURDATE();";
             $result = $conn->query($sql);
     
             if ($result->num_rows > 0) {

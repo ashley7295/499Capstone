@@ -45,7 +45,6 @@
                 }
 
                 // Fetch form IDs from the database before today's date
-                $current_date = date("Y-m-d");
                 $sql = "SELECT FormID FROM Forms WHERE dateAvailable < CURDATE()";
                 $result = $conn->query($sql);
 

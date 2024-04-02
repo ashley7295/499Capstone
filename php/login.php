@@ -28,15 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT * FROM users WHERE Username = '$username'";
     $result = $conn->query($sql);
 
-    // Runs through results
-    foreach($result as $r) {
-        // Using php function, we verify the hash that is on the DB
-        $pass_check = password_verify($password, $r['Password']);
+    $row = $result->fetch_assoc();
 
-        // If the password verify is true we login
-        if($pass_check) {
-		    $row = $result->fetch_assoc();
-        $user_id = $row['UserID'];
+    if ($row) {
+        // Verify the password
+        $pass_check = password_verify($password, $row['Password']);
+    
+        // If the password verification is true, proceed with login
+        if ($pass_check) {
+            $user_id = $row['UserID'];
 
         // Set the session variable
         $_SESSION['UserID'] = $user_id;
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <html>
                 Login failed. Please check your username and password.
                 <br>
-                <a href="login.html">Click Here</a> to return back to Login page
+                <a href="/499CAPSTONE/html/login.html">Click Here</a> to return back to Login page
             </html>
             <?php
         }

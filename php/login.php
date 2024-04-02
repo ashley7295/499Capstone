@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <html>
                 Login failed. Please check your username and password.
                 <br>
-                <a href="login.php">Click Here</a> to return back to Login page
+                <a href="login.html">Click Here</a> to return back to Login page
             </html>
             <?php
         }

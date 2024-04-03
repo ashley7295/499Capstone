@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="/499Capstone/html/Pretty.css">
-       
 </head>
 <body>
     <div class="top-bar">
@@ -22,8 +21,8 @@
         </div>
     </div>
 
-    <div class = "cssform2">
-    <table style="font-size: 18px;">
+    <div class="cssform2">
+        <table style="font-size: 18px;">
             <thead>
                 <tr>
                     <th>Form ID</th>
@@ -36,20 +35,19 @@
                 $username = "root"; // Change to your MySQL username
                 $password = ""; // Change to your MySQL password
                 $database = "Voting";
-    
+
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $database);
-    
+
                 // Check connection
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
-    
+
                 // Fetch form IDs from the database before today's date
-                $current_date = date("Y-m-d");
-                $sql = "SELECT FormID FROM forms WHERE dateAvailable < '$current_date'";
+                $sql = "SELECT FormID FROM Forms WHERE dateAvailable < CURDATE()";
                 $result = $conn->query($sql);
-    
+
                 if ($result->num_rows > 0) {
                     // Output table rows for each form ID
                     while ($row = $result->fetch_assoc()) {
@@ -58,16 +56,12 @@
                 } else {
                     echo '<tr><td colspan="1">No forms available before today\'s date</td></tr>';
                 }
-    
+
                 // Close the database connection
                 $conn->close();
                 ?>
             </tbody>
         </table>
     </div>
-</div>
 </body>
 </html>
-
-    </body>
-    </html>    

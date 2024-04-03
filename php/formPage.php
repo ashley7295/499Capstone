@@ -25,7 +25,7 @@
         </div>
         </body>
 </html>
-
+<div class=cssform2>
 <?php
 session_start(); // Start the session
 
@@ -113,7 +113,7 @@ if(isset($_GET['form_id'])) {
     exit();
 }
 ?>
-
+</div>
         
 
  

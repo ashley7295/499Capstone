@@ -97,7 +97,6 @@ if(isset($_GET['form_id'])) {
 
 
     ?>
-    <div class="cssform2">
         <?php
 
 

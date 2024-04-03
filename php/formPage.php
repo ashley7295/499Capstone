@@ -96,6 +96,14 @@ if(isset($_GET['form_id'])) {
         }
 
 
+
+
+    ?>
+    <div class="cssform2">
+        <?php
+
+
+
         // Add submit button
         echo "<input type='submit' value='Submit Answers'>";
 

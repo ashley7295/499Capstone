@@ -96,8 +96,12 @@ if(isset($_GET['form_id'])) {
         }
 
 
+
+
     ?>
+
         <?php
+
 
 
         // Add submit button

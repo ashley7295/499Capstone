@@ -15,7 +15,7 @@ try:
     username_field = driver.find_element(By.ID, "username")
     password_field = driver.find_element(By.ID, "password")
     username_field.send_keys("user1")
-    password_field.send_keys("password1")
+    password_field.send_keys("Password1")
 
     # Click the login button
     login_button = driver.find_element(By.XPATH, "//input[@type='submit']")

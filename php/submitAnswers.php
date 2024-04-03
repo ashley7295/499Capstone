@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     echo "Answers submitted successfully.";
-    header('Location: /499CAPSTONE/html/dashboard.html');
+    header('Location: /499CAPSTONE/php/dashboard.php');
 
     // Close the statement and database connection
     $stmt->close();

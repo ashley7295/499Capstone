@@ -36,8 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         // If the password verification is true, proceed with login
         if ($pass_check) {
-        
+
         $user_id = $row['UserID'];
+
 
         // Set the session variable
         $_SESSION['UserID'] = $user_id;

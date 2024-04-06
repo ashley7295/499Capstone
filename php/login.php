@@ -57,9 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Login failed
             ?>
             <html>
-                Login failed. Please check your username and password.
-                <br>
-                <a href="/499CAPSTONE/html/login.html">Click Here</a> to return back to Login page
+            <script>
+                alert("Login failed. Please check your username and password.");
+                window.location.href = "/499CAPSTONE/html/login.html";
+            </script>
             </html>
             <?php
         }

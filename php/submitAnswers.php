@@ -17,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_SESSION["UserID"];
 
     // Database connection parameters
-    $servername = "localhost"; // Change if your MySQL server is on a different host
-    $username = "root"; // Change to your MySQL username
-    $password = ""; // Change to your MySQL password
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
     $database = "Voting";
 
     // Create connection
@@ -44,6 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     echo "Answers submitted successfully.";
+
+    // redirect back to the dashboard
     header('Location: /499CAPSTONE/php/dashboard.php');
 
     // Close the statement and database connection

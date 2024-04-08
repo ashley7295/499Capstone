@@ -121,12 +121,12 @@ height: auto;
 
 /* Logo for menu bar*/
 .logo img {
-width: 10%;
-height: 7%;
-position: absolute; 
-top: 90px;
-left: 30px;
-} 
+  width: 7%;
+  height: 7%;
+  position: absolute; 
+  top: 90px;
+  left: 30px;
+}
 
 /* currently not using. this will make a circle 
 .dot img{

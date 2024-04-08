@@ -10,7 +10,7 @@
 <body>
     <div class="top-bar">
         <div class="words"><h1>Loach Votes</h1></div> 
-        <div class="logo"> <a href="/499Capstone/php/dashboard.php"><img src="/499Capstone/JPG/empty_rec.jpg" alt="Find Logo"></a> </div>  
+        <div class="logo"> <a href="/499Capstone/php/dashboard.php"><img src="/499Capstone/JPG/logo.jpg" alt="Logo"></a> </div>  
         <a href="/499Capstone/php/upcomingForms.php" class="button">Upcoming</a>
         <a href="/499Capstone/php/currentForms.php" class="button">Current</a>
         <a href="/499Capstone/php/previousForms.php" class="button">Past Results</a>
@@ -32,9 +32,9 @@
             <tbody style="text-align: center;">
                 <?php
                 // Database connection parameters
-                $servername = "localhost"; // Change if your MySQL server is on a different host
-                $username = "root"; // Change to your MySQL username
-                $password = ""; // Change to your MySQL password
+                $servername = "localhost"; 
+                $username = "root";
+                $password = "";
                 $database = "Voting";
     
                 // Create connection

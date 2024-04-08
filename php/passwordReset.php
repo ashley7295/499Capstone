@@ -1,8 +1,8 @@
 <?php
 // Database connection parameters
-$servername = "localhost"; // Change if your MySQL server is on a different host
-$username = "root"; // Change to your MySQL username
-$password = ""; // Change to your MySQL password
+$servername = "localhost";
+$username = "root";
+$password = "";
 $database = "Voting";
 
 // Create connection
@@ -20,6 +20,7 @@ session_start();
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
     // Get username and passwords from the user
     $username = $_POST['username'];
     $oldPassword = $_POST['oldPassword'];

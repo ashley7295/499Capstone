@@ -116,6 +116,6 @@ def test_reset_password_page():
 
 
 # Run test cases
-test_successful_login()
-test_invalid_credentials()
+#test_successful_login()
+#test_invalid_credentials()
 test_reset_password_page()

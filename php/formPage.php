@@ -11,7 +11,7 @@
 
     <div class="top-bar">
         <div class = "words"><h1>Loach Votes</h1></div> 
-        <div class = "logo"> <a href = "/499Capstone/php/dashboard.php"><img src="/499Capstone/JPG/empty_rec.jpg" alt="Find Logo"></a> </div>  
+        <div class = "logo"> <a href = "/499Capstone/php/dashboard.php"><img src="/499Capstone/JPG/logo.jpg" alt="Logo"></a> </div>  
         <a href="/499Capstone/php/upcomingForms.php" class="button">Upcoming</a>
         <a href="/499Capstone/php/currentForms.php" class="button">Current</a>
         <a href="/499Capstone/php/previousForms.php" class="button">Past Results</a>
@@ -27,16 +27,18 @@
 </html>
 <div class=cssform2>
 <?php
-session_start(); // Start the session
+
+// Start the session
+session_start();
 
 // Check if form ID is set in the request
 if(isset($_GET['form_id'])) {
     $form_id = $_GET['form_id'];
     
     // Database connection parameters
-    $servername = "localhost"; // Change if your MySQL server is on a different host
-    $username = "root"; // Change to your MySQL username
-    $password = ""; // Change to your MySQL password
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
     $database = "Voting";
 
     // Create connection
@@ -88,6 +90,8 @@ if(isset($_GET['form_id'])) {
 
         // Output questions and answer options
         echo "<form action='submitAnswers.php' method='post'>";
+        // Add hidden input field to capture FormID
+        echo "<input type='hidden' name='form_id' value='$form_id'>";
         foreach ($questions_with_answers as $question_id => $question_data) {
             echo "<h3>{$question_data['QuestionText']}</h3>";
             foreach ($question_data['AnswerOptions'] as $answer_option) {
@@ -96,9 +100,12 @@ if(isset($_GET['form_id'])) {
         }
 
 
+
+
     ?>
-    <div class="cssform2">
+
         <?php
+
 
 
         // Add submit button
@@ -113,6 +120,7 @@ if(isset($_GET['form_id'])) {
     // Close the database connection
     $conn->close();
 } else {
+    
     // If form ID is not set, redirect back to the form selection page
     header("Location: /499Capstone/php/dashboard.php");
     exit();

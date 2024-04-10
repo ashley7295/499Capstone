@@ -1,8 +1,8 @@
 <?php
 // Database connection parameters
-$servername = "localhost"; // Change if your MySQL server is on a different host
-$username = "root"; // Change to your MySQL username
-$password = ""; // Change to your MySQL password
+$servername = "localhost";
+$username = "root";
+$password = "";
 $database = "Voting";
 
 // Create connection
@@ -24,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 
     // Prepare a SQL query to check if the username and password match
-    // WE NEED TO MAKE ALL PASSWORDS USE HASH SINCE WE DONT HAVE ANY SIGNUP PAGE. 
     $sql = "SELECT * FROM users WHERE Username = '$username'";
     $result = $conn->query($sql);
 
@@ -54,12 +53,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		    header('Location: /499CAPSTONE/php/dashboard.php');
 		    exit;
         } else {
+
             // Login failed
             ?>
             <html>
-                Login failed. Please check your username and password.
-                <br>
-                <a href="/499CAPSTONE/html/login.html">Click Here</a> to return back to Login page
+            <script>
+                alert("Login failed. Please check your username and password.");
+                window.location.href = "/499CAPSTONE/html/login.html";
+            </script>
             </html>
             <?php
         }

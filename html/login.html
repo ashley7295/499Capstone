@@ -1,29 +1,38 @@
 <html>
 <head>
-<title>Login </title>
-<link rel="stylesheet" href="Pretty.css">
+  <!-- Title of the webpage -->
+  <title>Login</title>
+  <!-- Linking an external stylesheet -->
+  <link rel="stylesheet" href="Pretty.css">
 </head>
 
 <body>
   <div>
-    <form class = "cssform2" method = "post" action = "/499Capstone/php/login.php">
-      <div class = "login" ><img src="/499Capstone/JPG/empty.JPG" alt="Find Logo">  </div>
+    <!-- Form with method POST and action set to login.php -->
+    <form class="cssform1" method="post" action="/499Capstone/php/login.php">
+      <!-- Logo redirect -->
+      <div class="login"><img src="/499Capstone/JPG/logo.jpg" alt="Logo"></div>
+      <!-- Heading -->
       <h2>Welcome!</h2>
+      
+      <!-- Username input field with label -->
       <br><label for="uName">Username</label></br>
-      <input type="text" id="username" placeholder="username" name = "username" required>
-
+      <input type="text" id="username" placeholder="username" name="username" required>
+      
+      <!-- Password input field with label -->
       <br><label for="passWord">Password</label></br>
-      <input type="password" id = "password" placeholder="password" name = "password" required>
-      <script src="" ></script>
-
-      <br>
-      <span class="psw"> <a href="passwordReset.html">Forgot password</a><br><br></span>
-      <span class="signup"> <a href="signup.html">Want to sign up?</a><br><br></span>
+      <input type="password" id="password" placeholder="password" name="password" required>
+      
+      <!-- Link to password reset page -->
+      <br><span class="psw"><a href="passwordReset.html">Forgot password</a><br><br></span>
+      
+      <!-- Link to signup page -->
+      <span class="signup"><a href="signup.html">Want to sign up?</a><br><br></span>
+      
+      <!-- Submit button for the form -->
       <input type="submit" value="Login">
-      </form>
-      <br>
-
-    </form> 
+    </form>
+    <br>
   </div>
 </body>
 </html>

@@ -100,6 +100,14 @@ if(isset($_GET['form_id'])) {
         }
 
 
+
+
+    ?>
+
+        <?php
+
+
+
         // Add submit button
         echo "<input type='submit' value='Submit Answers'>";
 

@@ -5,7 +5,14 @@ session_start(); // Start the session
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if user is logged in
     if (!isset($_SESSION["UserID"])) {
-        echo "User not logged in.";
+        ?>
+        <html>
+        <script>
+            alert("YOU ARE NOT LOGGED IN");
+            window.location.href = "/499CAPSTONE/html/login.html";
+        </script>
+        </html>
+        <?php
         exit;
     }
 

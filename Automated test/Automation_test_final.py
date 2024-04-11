@@ -113,6 +113,77 @@ def test_reset_password_page():
     finally:
         # Close the browser window
         driver.quit()
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+def submit_form_with_answers():
+    # Initialize the WebDriver
+    driver = webdriver.Chrome()
+
+    try:
+        # Open the login page
+        driver.get("http://localhost/499Capstone/html/login.html")
+
+        # Find the username and password fields and enter valid credentials
+        username_field = driver.find_element(By.ID, "username")
+        password_field = driver.find_element(By.ID, "password")
+        username_field.send_keys("user1")
+        password_field.send_keys("password1")
+
+        # Click the login button
+        login_button = driver.find_element(By.XPATH, "//input[@type='submit']")
+        login_button.click()
+
+        # Wait for the dashboard page to load
+        WebDriverWait(driver, 10).until(EC.title_contains("Dashboard"))
+
+        assert "Dashboard" in driver.title
+
+        #ADD SOEMTHING HERE TO CLICK ON CURRENTFORM PAGE
+        # Find the form element
+        form = driver.find_element(By.CLASS_NAME, "cssform2")
+
+        # Select a form by interacting with the radio buttons
+        radio_buttons = form.find_elements(By.NAME, "form_id")
+        # Assuming you want to select the first radio button, you can modify this to select a specific one if needed
+        radio_buttons[0].click()
+
+        # Submit the form
+        submit_button = form.find_element(By.XPATH, "//input[@type='submit']")
+        submit_button.click()
+
+        # Wait for the next page to load (assuming submitAnswers.php is the target page)
+        # You can add explicit waits here if needed
+        # e.g., WebDriverWait(driver, 10).until(EC.url_to_be("TARGET_URL"))
+
+        # Find the form element containing the questions and answer options
+        form_answers = driver.find_element(By.CLASS_NAME, "cssform2")
+
+        # Select answers for each question
+        # For demonstration purposes, let's assume we select the first option for each question
+        answer_options = form_answers.find_elements(By.XPATH, "//input[@type='radio']")
+        for option in answer_options:
+            option.click()
+
+        # Submit the form
+        submit_answers_button = form_answers.find_element(By.XPATH, "//input[@type='submit']")
+        submit_answers_button.click()
+
+        # Wait for the next page to load (assuming the target page after submitting answers)
+        # You can add explicit waits here if needed
+        # e.g., WebDriverWait(driver, 10).until(EC.url_to_be("TARGET_URL"))
+
+        # Verify that the form submission was successful (optional)
+        # You can add verification steps here, depending on what you expect to see on the next page
+
+    finally:
+        # Close the browser
+        driver.quit()
+
+# Example usage:
+form_url = "URL_OF_YOUR_WEB_PAGE_CONTAINING_THE_FORM"
+submit_form_with_answers(form_url)
+
 
 
 # Run test cases

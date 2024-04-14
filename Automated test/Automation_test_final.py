@@ -139,35 +139,43 @@ def submit_form_with_answers():
 
         assert "Dashboard" in driver.title
 
-        #ADD SOEMTHING HERE TO CLICK ON CURRENTFORM PAGE
-        # Find the form element
-        form = driver.find_element(By.CLASS_NAME, "cssform2")
+        current_forms_link = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.LINK_TEXT, "Current"))
+        )
+        
 
-        # Select a form by interacting with the radio buttons
-        radio_buttons = form.find_elements(By.NAME, "form_id")
-        # Assuming you want to select the first radio button, you can modify this to select a specific one if needed
-        radio_buttons[0].click()
+        # Click on the Current Forms link
+        current_forms_link.click()
 
-        # Submit the form
-        submit_button = form.find_element(By.XPATH, "//input[@type='submit']")
-        submit_button.click()
+        # #ADD SOEMTHING HERE TO CLICK ON CURRENTFORM PAGE
+        # # Find the form element
+        # form = driver.find_element(By.CLASS_NAME, "cssform2")
 
-        # Wait for the next page to load (assuming submitAnswers.php is the target page)
-        # You can add explicit waits here if needed
-        # e.g., WebDriverWait(driver, 10).until(EC.url_to_be("TARGET_URL"))
+        # # Select a form by interacting with the radio buttons
+        # radio_buttons = form.find_elements(By.NAME, "form_id")
+        # # Assuming you want to select the first radio button, you can modify this to select a specific one if needed
+        # radio_buttons[0].click()
 
-        # Find the form element containing the questions and answer options
-        form_answers = driver.find_element(By.CLASS_NAME, "cssform2")
+        # # Submit the form
+        # submit_button = form.find_element(By.XPATH, "//input[@type='submit']")
+        # submit_button.click()
 
-        # Select answers for each question
-        # For demonstration purposes, let's assume we select the first option for each question
-        answer_options = form_answers.find_elements(By.XPATH, "//input[@type='radio']")
-        for option in answer_options:
-            option.click()
+        # # Wait for the next page to load (assuming submitAnswers.php is the target page)
+        # # You can add explicit waits here if needed
+        # # e.g., WebDriverWait(driver, 10).until(EC.url_to_be("TARGET_URL"))
 
-        # Submit the form
-        submit_answers_button = form_answers.find_element(By.XPATH, "//input[@type='submit']")
-        submit_answers_button.click()
+        # # Find the form element containing the questions and answer options
+        # form_answers = driver.find_element(By.CLASS_NAME, "cssform2")
+
+        # # Select answers for each question
+        # # For demonstration purposes, let's assume we select the first option for each question
+        # answer_options = form_answers.find_elements(By.XPATH, "//input[@type='radio']")
+        # for option in answer_options:
+        #     option.click()
+
+        # # Submit the form
+        # submit_answers_button = form_answers.find_element(By.XPATH, "//input[@type='submit']")
+        # submit_answers_button.click()
 
         # Wait for the next page to load (assuming the target page after submitting answers)
         # You can add explicit waits here if needed
@@ -180,13 +188,12 @@ def submit_form_with_answers():
         # Close the browser
         driver.quit()
 
-# Example usage:
-form_url = "URL_OF_YOUR_WEB_PAGE_CONTAINING_THE_FORM"
-submit_form_with_answers(form_url)
+
 
 
 
 # Run test cases
 #test_successful_login()
 #test_invalid_credentials()
-test_reset_password_page()
+#test_reset_password_page()
+submit_form_with_answers()

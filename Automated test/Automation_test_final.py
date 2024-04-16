@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from datetime import datetime
 
 def test_successful_login():
     # Initialize the WebDriver
@@ -115,7 +116,59 @@ def test_reset_password_page():
         driver.quit()
 
 
+def test_display_forms_on_previous_forms_page():
+    # Initialize the WebDriver
+    driver = webdriver.Chrome()
+    try:
+        # Open the previousForms page
+        driver.get("http://localhost/499Capstone/php/previousForms.php")
+
+        # Wait for the forms table to load
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "tbody")))
+
+        # Find the table containing forms
+        forms_table = driver.find_element(By.TAG_NAME, "tbody")
+
+        # Check if the table has at least one row (indicating forms are displayed)
+        assert len(forms_table.find_elements(By.TAG_NAME, "tr")) > 0, "No forms found on the previousForms page."
+
+        # If the assertion passes, print a success message
+        print("Test case: Display Forms on Previous Forms Page - PASSED")
+
+    finally:
+        # Close the browser window
+        driver.quit()
+
+
+
+def test_display_forms_on_upcoming_forms_page():
+    # Initialize the WebDriver
+    driver = webdriver.Chrome()
+    try:
+        # Open the previousForms page
+        driver.get("http://localhost/499Capstone/php/upcomingForms.php")
+
+        # Wait for the forms table to load
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "tbody")))
+
+        # Find the table containing forms
+        forms_table = driver.find_element(By.TAG_NAME, "tbody")
+
+        # Check if the table has at least one row (indicating forms are displayed)
+        assert len(forms_table.find_elements(By.TAG_NAME, "tr")) > 0, "No forms found on the previousForms page."
+
+        # If the assertion passes, print a success message
+        print("Test case: Display Forms on Upcoming Forms Page - PASSED")
+
+    finally:
+        # Close the browser window
+        driver.quit()
+
+
+
 # Run test cases
-#test_successful_login()
-#test_invalid_credentials()
+test_successful_login()
+test_invalid_credentials()
 test_reset_password_page()
+test_display_forms_on_previous_forms_page()
+test_display_forms_on_upcoming_forms_page()

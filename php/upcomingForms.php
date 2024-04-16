@@ -56,7 +56,7 @@
                         echo '<tr><td>' . $row["FormID"] . '</td></tr>';
                     }
                 } else {
-                    echo '<tr><td colspan="1">No forms available before today\'s date</td></tr>';
+                    echo '<tr><td colspan="1">No forms available after today\'s date</td></tr>';
                 }
     
                 // Close the database connection

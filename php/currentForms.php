@@ -21,6 +21,8 @@
         </div>
     </div>
 
+        <div class = "background" ><img src="/499Capstone/JPG/background.png" alt="Logo"></a></div>
+
     <form class="cssform2" action="formPage.php" method="get">
         <label for="form_id">Select Form:</label>
         <ul>
@@ -53,7 +55,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
 // SQL query to retrieve forms with the current date and voting status for the logged-in user
 $sql = "SELECT Forms.FormID, Forms.Title, Forms.Description,
             IF(UserAnswers.UserID IS NULL, 0, 1) AS Voted
@@ -64,19 +65,29 @@ $sql = "SELECT Forms.FormID, Forms.Title, Forms.Description,
 
 $result = $conn->query($sql);
 
+// Track encountered form IDs
+$encounteredFormIDs = [];
+
 if ($result->num_rows > 0) {
     // Output data of each row
     while($row = $result->fetch_assoc()) {
-        echo '<div>';
-        echo '<h3>' . $row['Title'] . '</h3>';
-        echo '<p>' . $row['Description'] . '</p>';
-        // Check if the user has voted for the form
-        if ($row['Voted']) {
-            echo '<p>You have already voted for this form.</p>';
-        } else {
-            echo '<input type="radio" name="form_id" value="' . $row["FormID"] . '"> Form ' . $row["FormID"] . '<br>';
+        // Check if the form ID has been encountered before
+        if (!in_array($row['FormID'], $encounteredFormIDs)) {
+            echo '<div>';
+            echo '<h3>' ."Form Title: ". $row['Title'] . '</h3>';
+            echo '<p>' ."Description: ". $row['Description'] . '</p>';
+            // Check if the user has voted for the form
+            if ($row['Voted']) {
+                echo '<p>*You have already voted for this form*</p>';
+            } else {
+                echo '<input type="radio" name="form_id" value="' . $row["FormID"] . '"> Form ' . $row["FormID"] . '<br>';
+                echo '</ul>';
+                echo '<input type="submit" value="Submit">'; 
+            }
+            echo '</div>';
+            // Add the form ID to the encountered IDs list
+            $encounteredFormIDs[] = $row['FormID'];
         }
-        echo '</div>';
     }
 } else {
     echo "0 results";
@@ -85,9 +96,10 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
-
-        </ul>
-        <input type="submit" value="Submit">
+    
     </form>
+
+
+
 </body>
 </html>

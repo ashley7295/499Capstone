@@ -62,7 +62,7 @@ $result = $conn->query($sql);
     </div>
 
     <form class="cssform2" action="formPage.php" method="get">
-        <label for="form_id">Select Form:</label>
+        <label for="form_id">Previous Form:</label>
         <ul>
         <?php
         if ($result->num_rows > 0) {

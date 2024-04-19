@@ -87,7 +87,6 @@ if(isset($_GET['form_id'])) {
                 );
             }
         }
-
         // Output questions and answer options
         echo "<form action='submitAnswers.php' method='post'>";
         // Add hidden input field to capture FormID
@@ -95,19 +94,13 @@ if(isset($_GET['form_id'])) {
         foreach ($questions_with_answers as $question_id => $question_data) {
             echo "<h3>{$question_data['QuestionText']}</h3>";
             foreach ($question_data['AnswerOptions'] as $answer_option) {
-                echo "<input type='radio' name='answer[$question_id]' value='{$answer_option['AnswerID']}' required>{$answer_option['AnswerOption']}<br>";
+                echo "<input type='radio' name='answer[$question_id]' value='{$answer_option['AnswerID']}' required>{$answer_option['AnswerOption']}<br><br>";
             }
         }
-
-
-
-
     ?>
-
         <?php
-
-
-
+        echo "</br>";
+        echo "</br>";
         // Add submit button
         echo "<input type='submit' value='Submit Answers'>";
 
@@ -131,4 +124,3 @@ if(isset($_GET['form_id'])) {
 
  
     
-

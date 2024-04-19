@@ -64,6 +64,7 @@ $result = $conn->query($sql);
         <label for="form_id"></label>
         <ul>
         <?php
+
         if ($result->num_rows > 0) {
             // Output data of each row
             while($row = $result->fetch_assoc()) {
@@ -71,7 +72,7 @@ $result = $conn->query($sql);
                 echo '<h3>' . $row['Title'] . '</h3>';
                 echo '<p>' . $row['Description'] . '</p>';
                 echo '</ul>';
-                echo 'br';
+                echo '</br>';
                 // Check if the user has voted for the form
                 if ($row['Voted']) {
                     echo '<p>You have already voted for this form.</p>';

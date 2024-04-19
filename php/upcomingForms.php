@@ -45,20 +45,23 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
     
-                // Fetch form IDs from the database before today's date
+                // Fetch form titles from the database with a date greater than today
                 $current_date = date("Y-m-d");
-                $sql = "SELECT FormID FROM forms WHERE dateAvailable > '$current_date'";
+                $sql = "SELECT Title FROM forms WHERE dateAvailable > '$current_date'";
                 $result = $conn->query($sql);
-    
+
                 if ($result->num_rows > 0) {
-                    // Output table rows for each form ID
+                    // Output table rows for each form title
                     while ($row = $result->fetch_assoc()) {
-                        echo '<tr><td>' . $row["FormID"] . '</td></tr>';
+                        echo '<h3>' . $row['Title'] . '</h3>';
+                        echo '<p>' . $row['Description'] . '</p>';
+                        echo '</ul>';
+                        echo 'br';
                     }
                 } else {
                     echo '<tr><td colspan="1">No forms available after today\'s date</td></tr>';
                 }
-    
+                    
                 // Close the database connection
                 $conn->close();
                 ?>

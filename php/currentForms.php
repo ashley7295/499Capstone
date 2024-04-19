@@ -24,7 +24,7 @@
         <div class = "background" ><img src="/499Capstone/JPG/background.png" alt="Logo"></a></div>
 
     <form class="cssform2" action="formPage.php" method="get">
-        <label for="form_id">Select Form:</label>
+
         <ul>
             
         <?php
@@ -34,7 +34,6 @@ session_start();
 // Check if the user is logged in
 if(isset($_SESSION['UserID'])) {
     $currentUserID = $_SESSION['UserID']; // Get the UserID of the logged-in user
-    echo "Logged in as UserID: " . $currentUserID;
 } else {
     // Redirect to the login page if the user is not logged in
     header("Location: /path/to/login.php");

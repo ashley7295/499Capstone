@@ -5,7 +5,6 @@ session_start();
 // Check if the user is logged in
 if(isset($_SESSION['UserID'])) {
     $currentUserID = $_SESSION['UserID']; // Get the UserID of the logged-in user
-    echo "Logged in as UserID: " . $currentUserID;
 } else {
     // Redirect to the login page if the user is not logged in
     header("Location: /path/to/login.php");
@@ -62,15 +61,18 @@ $result = $conn->query($sql);
     </div>
 
     <form class="cssform2" action="formPage.php" method="get">
-        <label for="form_id">Previous Form:</label>
+        <label for="form_id"></label>
         <ul>
         <?php
+
         if ($result->num_rows > 0) {
             // Output data of each row
             while($row = $result->fetch_assoc()) {
                 echo '<div>';
                 echo '<h3>' . $row['Title'] . '</h3>';
                 echo '<p>' . $row['Description'] . '</p>';
+                echo '</ul>';
+                echo '</br>';
                 // Check if the user has voted for the form
                 if ($row['Voted']) {
                     echo '<p>You have already voted for this form.</p>';
@@ -84,8 +86,6 @@ $result = $conn->query($sql);
         $conn->close();
         ?>
         </ul>
-        <!-- Removed the radio button line -->
-        <!-- <input type="submit" value="Submit"> -->
     </form>
 </body>
 </html>

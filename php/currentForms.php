@@ -9,7 +9,7 @@
 <body>
     <div class="top-bar">
         <div class="words"><h1>Loach Votes</h1></div> 
-        <div class="logo"> <a href="/499Capstone/php/dashboard.php"><img src="/499Capstone/JPG/logo.jpg" alt="Logo"></a> </div>  
+        <div class="logo"> <a href="/499Capstone/php/dashboard.php"><img src="/499Capstone/JPG/logo.jpg"></a> </div>  
         <a href="/499Capstone/php/upcomingForms.php" class="button">Upcoming</a>
         <a href="/499Capstone/php/currentForms.php" class="button">Current</a>
         <a href="/499Capstone/php/previousForms.php" class="button">Past Results</a>
@@ -24,7 +24,7 @@
         <div class = "background" ><img src="/499Capstone/JPG/background.png" alt="Logo"></a></div>
 
     <form class="cssform2" action="formPage.php" method="get">
-        <label for="form_id">Select Form:</label>
+
         <ul>
             
         <?php
@@ -34,7 +34,6 @@ session_start();
 // Check if the user is logged in
 if(isset($_SESSION['UserID'])) {
     $currentUserID = $_SESSION['UserID']; // Get the UserID of the logged-in user
-    echo "Logged in as UserID: " . $currentUserID;
 } else {
     // Redirect to the login page if the user is not logged in
     header("Location: /path/to/login.php");
@@ -73,33 +72,33 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         // Check if the form ID has been encountered before
         if (!in_array($row['FormID'], $encounteredFormIDs)) {
+            echo '</br>';
             echo '<div>';
-            echo '<h3>' ."Form Title: ". $row['Title'] . '</h3>';
-            echo '<p>' ."Description: ". $row['Description'] . '</p>';
+            echo '<h3>' . $row['Title'] . '</h3>';
+            echo '<p>' . $row['Description'] . '</p>';
             // Check if the user has voted for the form
             if ($row['Voted']) {
-                echo '<p>*You have already voted for this form*</p>';
-            } else {
-                echo '<input type="radio" name="form_id" value="' . $row["FormID"] . '"> Form ' . $row["FormID"] . '<br>';
+                echo '<FONT COLOR="#ff0000"><p>*You have already voted for this form*</p></FONT>';
                 echo '</ul>';
-                echo '<input type="submit" value="Submit">'; 
+            } else {
+                echo '<input type="radio" name="form_id" value="' . $row["FormID"] . '"> Select "' . $row["Title"] . '".<br>';
             }
             echo '</div>';
             // Add the form ID to the encountered IDs list
             $encounteredFormIDs[] = $row['FormID'];
         }
+
     }
+    echo '</br>';
+    echo '</br>';
+    echo '</ul>';
+    echo '<input type="submit" value="Submit">'; 
 } else {
     echo "0 results";
 }
 // Close the database connection
 $conn->close();
 ?>
-
-    
-    </form>
-
-
-
+</form>
 </body>
 </html>

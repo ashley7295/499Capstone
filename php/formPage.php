@@ -18,8 +18,25 @@
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
-              <a href="/499Capstone/php/logout.php">Logout</a>
-            
+            <div class="dropdown">
+        <button class="dropbtn">
+        <?php 
+            if(isset($_SESSION['Username'])) {
+                $currentUsername = $_SESSION['Username']; // Get the UserID of the logged-in user
+                echo "Hello, " . $currentUsername;
+            } else {
+                echo "My Account";
+            }
+            ?>
+            </button>
+            <div class="dropdown-content">
+            <?php 
+                if(isset($_SESSION['Username'])) {
+                    echo '<a href="/499Capstone/php/logout.php">Logout</a>';
+                } else {
+                    echo '<a href="/499Capstone/html/login.html">Login</a>';
+                }
+                ?>
             </div>
         </div>
         </div>

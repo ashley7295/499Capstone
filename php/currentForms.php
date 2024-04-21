@@ -36,7 +36,9 @@
     </div>
 
     <form class="cssform2" action="formPage.php" method="get">
-    <label for="form_id">Current Forms:</label>
+        <header>
+            <h1> Current Forms </h1>
+        </header>
         <ul>
             
         <?php

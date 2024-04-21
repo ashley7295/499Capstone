@@ -18,7 +18,7 @@ def test_successful_login():
         username_field.send_keys("user1")
         password_field.send_keys("password1")
 
-        # Click the login button
+        #Find Login and click the login button
         login_button = driver.find_element(By.XPATH, "//input[@type='submit']")
         login_button.click()
 
@@ -37,7 +37,6 @@ def test_successful_login():
 
 
 def test_invalid_credentials():
-    # Initialize the WebDriver
     driver = webdriver.Chrome()
     try:
         # Open the login page
@@ -69,7 +68,6 @@ def test_invalid_credentials():
 
 
 def test_reset_password_page():
-    # Initialize the WebDriver
     driver = webdriver.Chrome()
     try:
         # Open the login page
@@ -93,31 +91,94 @@ def test_reset_password_page():
         submit_button = driver.find_element(By.ID, "submitbutton")
 
         # Enter the necessary information
-        username_field.send_keys("user1")  # Replace "username" with actual username
-        old_password_field.send_keys("password1")  # Replace "old_password" with actual old password
-        new_password_field.send_keys("Password1")  # Replace "new_password" with actual new password
-        confirm_password_field.send_keys("Password1")  # Confirm new password
+        username_field.send_keys("user1")  
+        old_password_field.send_keys("password1")  
+        new_password_field.send_keys("Password1")  
+        confirm_password_field.send_keys("Password1")  
 
         # Click the submit button to reset the password
         submit_button.click()
 
-        #Change code below to expect dashboard instead
         # Wait for the success message or confirmation page to appear
-        WebDriverWait(driver, 10).until(EC.title_contains("Login"))  # Adjust the condition based on the confirmation page title or success message
+        WebDriverWait(driver, 10).until(EC.title_contains("Login")) 
 
         # Verify that the password reset was successful
-        assert "Login" in driver.title  # Adjust the condition based on the confirmation page title or success message
+        assert "Login" in driver.title  
 
-        # If the assertion passes, print a success message
         print("Test case: Reset Password Page - PASSED")
 
     finally:
         # Close the browser window
         driver.quit()
 
+def submit_form_with_answers():
+    # Initialize the WebDriver
+    driver = webdriver.Chrome()
+
+    try:
+        # Open the login page
+        driver.get("http://localhost/499Capstone/html/login.html")
+
+        # Find the username and password fields and enter valid credentials
+        username_field = driver.find_element(By.ID, "username")
+        password_field = driver.find_element(By.ID, "password")
+        username_field.send_keys("user1")
+        password_field.send_keys("password1")
+
+        # Click the login button
+        login_button = driver.find_element(By.XPATH, "//input[@type='submit']")
+        login_button.click()
+
+        # Wait for the dashboard page to load
+        WebDriverWait(driver, 10).until(EC.title_contains("Dashboard"))
+
+        assert "Dashboard" in driver.title
+
+        current_forms_link = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.LINK_TEXT, "Current"))
+        )
+        
+        # Click on the Current Forms link
+        current_forms_link.click()
+
+        # Find the form element
+        form = driver.find_element(By.CLASS_NAME, "cssform2")
+
+        # Select a form by interacting with the radio buttons
+        radio_buttons = form.find_elements(By.NAME, "form_id")
+
+        #Selects first radio button
+        radio_buttons[0].click()
+
+        # Submit the form
+        submit_button = form.find_element(By.XPATH, "//input[@type='submit']")
+        submit_button.click()
+
+        form_answers = driver.find_element(By.CLASS_NAME, "cssform2")
+
+        # Select answers for each question
+        answer_options = form_answers.find_elements(By.XPATH, "//input[@type='radio']")
+        for option in answer_options:
+            option.click()
+
+        # Submit the form
+        submit_answers_button = form_answers.find_element(By.XPATH, "//input[@type='submit']")
+        submit_answers_button.click()
+
+        #Wait for dashboard to show again
+        WebDriverWait(driver, 10).until(EC.title_contains("Dashboard"))
+        assert "Dashboard" in driver.title
+        print('Test Passed')
+
+    finally:
+        # Close the browser
+        driver.quit()
+
+
+
+
 
 def test_display_forms_on_previous_forms_page():
-    # Initialize the WebDriver
     driver = webdriver.Chrome()
     try:
         # Open the previousForms page
@@ -142,7 +203,6 @@ def test_display_forms_on_previous_forms_page():
 
 
 def test_display_forms_on_upcoming_forms_page():
-    # Initialize the WebDriver
     driver = webdriver.Chrome()
     try:
         # Open the previousForms page
@@ -170,5 +230,8 @@ def test_display_forms_on_upcoming_forms_page():
 #test_successful_login()
 #test_invalid_credentials()
 #test_reset_password_page()
+
 test_display_forms_on_previous_forms_page()
 #test_display_forms_on_upcoming_forms_page()
+
+submit_form_with_answers()

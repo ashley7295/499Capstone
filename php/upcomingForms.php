@@ -23,10 +23,10 @@
     </div>
 
     <div class = "cssform2">
+        <header>
+            <h1> Upcoming Forms </h1>
+        </header>
         <table style="font-size: 18px;">
-            <header>
-                <h1> Upcoming Forms </h1>
-            </header>
             <tbody style="text-align: center;">
                 <?php
                 // Database connection parameters

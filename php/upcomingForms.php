@@ -15,14 +15,31 @@
         <a href="/499Capstone/php/currentForms.php" class="button">Current Forms</a>
         <a href="/499Capstone/php/previousForms.php" class="button">Previous Forms</a>
         <div class="dropdown">
-            <button class="dropbtn">My Account</button>
+        <div class="dropdown">
+        <button class="dropbtn">
+        <?php 
+            if(isset($_SESSION['Username'])) {
+                $currentUsername = $_SESSION['Username']; // Get the UserID of the logged-in user
+                echo "Hello, " . $currentUsername;
+            } else {
+                echo "My Account";
+            }
+            ?>
+            </button>
             <div class="dropdown-content">
-              <a href="/499Capstone/php/logout.php">Logout</a>
+            <?php 
+                if(isset($_SESSION['Username'])) {
+                    echo '<a href="/499Capstone/php/logout.php">Logout</a>';
+                } else {
+                    echo '<a href="/499Capstone/html/login.html">Login</a>';
+                }
+                ?>
             </div>
         </div>
     </div>
 
     <div class = "cssform2">
+    <label for="form_id">Upcoming Forms:</label>
         <table style="font-size: 18px;">
             <header>
                 <h1> Upcoming Forms </h1>

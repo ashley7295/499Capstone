@@ -11,9 +11,9 @@
     <div class="top-bar">
         <div class="words"><h1>Loach Votes</h1></div> 
         <div class="logo"> <a href="/499Capstone/php/dashboard.php"><img src="/499Capstone/JPG/logo.jpg" alt="Logo"></a> </div>  
-        <a href="/499Capstone/php/upcomingForms.php" class="button">Upcoming</a>
-        <a href="/499Capstone/php/currentForms.php" class="button">Current</a>
-        <a href="/499Capstone/php/previousForms.php" class="button">Past Results</a>
+        <a href="/499Capstone/php/upcomingForms.php" class="button">Upcoming Forms</a>
+        <a href="/499Capstone/php/currentForms.php" class="button">Current Forms</a>
+        <a href="/499Capstone/php/previousForms.php" class="button">Previous Forms</a>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -56,7 +56,7 @@
                         echo '<h3>' . $row['Title'] . '</h3>';
                         echo '<p>' . $row['Description'] . '</p>';
                         echo '</ul>';
-                        echo 'br';
+                        echo '</br>';
                     }
                 } else {
                     echo '<tr><td colspan="1">No forms available after today\'s date</td></tr>';

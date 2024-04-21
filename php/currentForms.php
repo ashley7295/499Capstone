@@ -10,9 +10,9 @@
     <div class="top-bar">
         <div class="words"><h1>Loach Votes</h1></div> 
         <div class="logo"> <a href="/499Capstone/php/dashboard.php"><img src="/499Capstone/JPG/logo.jpg"></a> </div>  
-        <a href="/499Capstone/php/upcomingForms.php" class="button">Upcoming</a>
-        <a href="/499Capstone/php/currentForms.php" class="button">Current</a>
-        <a href="/499Capstone/php/previousForms.php" class="button">Past Results</a>
+        <a href="/499Capstone/php/upcomingForms.php" class="button">Upcoming Forms</a>
+        <a href="/499Capstone/php/currentForms.php" class="button">Current Forms</a>
+        <a href="/499Capstone/php/previousForms.php" class="button">Previous Forms</a>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -20,8 +20,6 @@
             </div>
         </div>
     </div>
-
-        <div class = "background" ><img src="/499Capstone/JPG/background.png" alt="Logo"></a></div>
 
     <form class="cssform2" action="formPage.php" method="get">
 

@@ -37,10 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($pass_check) {
 
         $user_id = $row['UserID'];
-
+        $username = $row['Username'];
 
         // Set the session variable
         $_SESSION['UserID'] = $user_id;
+        $_SESSION['Username'] = $username;
         
         // Update UserID in the database
         $update_sql = "UPDATE users SET UserID = ? WHERE Username = ?";

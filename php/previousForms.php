@@ -54,7 +54,17 @@ $result = $conn->query($sql);
         <a href="/499Capstone/php/currentForms.php" class="button">Current</a>
         <a href="/499Capstone/php/previousForms.php" class="button">Past Results</a>
         <div class="dropdown">
-            <button class="dropbtn">My Account</button>
+        <button class="dropbtn">
+            <?php 
+            
+            if(isset($_SESSION['Username'])) {
+                $currentUsername = $_SESSION['Username']; // Get the UserID of the logged-in user
+                echo "Hello, " . $currentUsername;
+            } else {
+                echo "My Account";
+            }
+            ?>
+            </button>
             <div class="dropdown-content">
               <a href="/499Capstone/php/logout.php">Logout</a>
             </div>

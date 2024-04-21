@@ -61,6 +61,9 @@ $result = $conn->query($sql);
     </div>
 
     <form class="cssform2" action="formPage.php" method="get">
+        <header>
+           <h1> Previous Forms </h1>
+        </header>
         <label for="form_id"></label>
         <ul>
         <?php

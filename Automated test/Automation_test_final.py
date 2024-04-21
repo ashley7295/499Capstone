@@ -179,7 +179,6 @@ def submit_form_with_answers():
 
 
 def test_display_forms_on_previous_forms_page():
-    # Initialize the WebDriver
     driver = webdriver.Chrome()
     try:
         # Open the previousForms page
@@ -204,7 +203,6 @@ def test_display_forms_on_previous_forms_page():
 
 
 def test_display_forms_on_upcoming_forms_page():
-    # Initialize the WebDriver
     driver = webdriver.Chrome()
     try:
         # Open the previousForms page

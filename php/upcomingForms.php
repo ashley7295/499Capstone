@@ -24,11 +24,9 @@
 
     <div class = "cssform2">
         <table style="font-size: 18px;">
-            <thead>
-                <tr>
-                    <th>Form ID</th>
-                </tr>
-            </thead>
+            <header>
+                <h1> Upcoming Forms </h1>
+            </header>
             <tbody style="text-align: center;">
                 <?php
                 // Database connection parameters
@@ -47,7 +45,7 @@
     
                 // Fetch form titles from the database with a date greater than today
                 $current_date = date("Y-m-d");
-                $sql = "SELECT Title FROM forms WHERE dateAvailable > '$current_date'";
+                $sql = "SELECT Title, Description FROM forms WHERE dateAvailable > '$current_date'";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
